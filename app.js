@@ -47,7 +47,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 
-const secret = process.end.SECRET || 'thisisnotagoodsession';
+const secret = process.env.SECRET || 'thisisnotagoodsession';
 
 const store = new MongoStore({
     url: dburl,
@@ -154,6 +154,8 @@ app.use((err, req, res, next)=>{
     res.status(statusCode).render('error', {err});
 })
 
-app.listen(3000, ()=>{
+const port = process.env.PORT || 3000;
+
+app.listen(port, ()=>{
     console.log("Connection Open")
 })
