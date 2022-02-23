@@ -18,7 +18,7 @@ const sample = array=> array[Math.floor(Math.random()*array.length)]
 
 const seed = async ()=>{
     await Campground.deleteMany({});
-    for(let i = 0; i<50; i++){
+    for(let i = 0; i<200; i++){
         const random405 = Math.floor(Math.random()*405)
         const price = Math.floor(Math.random()*20)+100;
         const camp = new Campground({
@@ -27,14 +27,21 @@ const seed = async ()=>{
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta consequatur porro iste itaque quidem illo cumque nesciunt! Veritatis repellendus quisquam iure vitae unde, mollitia provident molestias nemo atque facere cum',
             price,
+            geometry: {
+                coordinates : [ 
+                    cities[random405].longitude,
+                    cities[random405].latitude,
+                ],
+                type : "Point" 
+                },
             images: [
                 {
-                  url: 'https://res.cloudinary.com/srm-institute-of-science-and-technology-srmist-delhi-ncr-campus/image/upload/v1645336865/Yelpcamp/gjzrth3a1ggoexwylswc.jpg',
-                  filename: 'Yelpcamp/gjzrth3a1ggoexwylswc',                
+                  url:  "https://res.cloudinary.com/srm-institute-of-science-and-technology-srmist-delhi-ncr-campus/image/upload/v1645613489/Yelpcamp/kvv8pbynftynmq1b9em3.jpg",
+                  filename:  "Yelpcamp/kvv8pbynftynmq1b9em3",                
                 },
                 {
-                  url: 'https://res.cloudinary.com/srm-institute-of-science-and-technology-srmist-delhi-ncr-campus/image/upload/v1645336867/Yelpcamp/sinnnivw0na74ozt2yzn.jpg',
-                  filename: 'Yelpcamp/sinnnivw0na74ozt2yzn',                
+                  url: "https://res.cloudinary.com/srm-institute-of-science-and-technology-srmist-delhi-ncr-campus/image/upload/v1645613490/Yelpcamp/odkjnzjut29e0mx9jiyy.jpg",
+                  filename:  "Yelpcamp/odkjnzjut29e0mx9jiyy",                
                 }
               ]
         })
